@@ -113,15 +113,19 @@ def get_reactome_hugo(hugo_dic, organism="HSA",):
     reactome.columns = ['genes','name']
     return reactome
 
-def parse_gmt(gmt_path, ensembl2name_path):
+def parse_gmt(gmt_path, gene_id_dict = None):
     #ensembl2name_path is a file exported from biomart with only Gene Stable ID and Gene Name fields
-    dict = pd.read_csv(ensembl2name_path, sep='\t', index_col=1).dropna()
+    if gene_id_dict not None:
+        dict = pd.read_csv(gene_id_dict, sep='\t', index_col=1).dropna()
     gmt = pd.DataFrame(columns=['genes', 'url'])
     with open(gmt_path, 'r') as f:
         lines = f.readlines()
         for line in lines:
             line = line.split('\t')
             gmt.loc[line[0],'url'] = line[1]
-            ensembl_genes = dict[dict.index.isin(line[2:])].values.T.tolist()[0]
-            gmt.loc[line[0],'genes'] = ensembl_genes
+            if gene_id_dict not None:
+                genes = dict[dict.index.isin(line[2:])].values.T.tolist()[0]
+            else:
+                genes = line[2:]
+            gmt.loc[line[0],'genes'] = genes
     return gmt
