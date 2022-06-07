@@ -13,7 +13,7 @@ def decompose_pathways(data, gene_sets_df, n_neighbors=25, min_genes=3, snn=True
     print('Performing pathway decomposition')
     decomposed_df = pd.DataFrame(index = data.index, columns = gene_sets_df.index)
     i = 1
-    for pathway in reactome.index:
+    for pathway in gene_sets_df.index:
         print('('+str(i)+'/'+str(len(gene_sets_df.index))+')','---',pathway,'---', len(gene_sets_df.loc[pathway, 'genes']), 'genes')
         i+=1
         try:
