@@ -33,3 +33,20 @@ score_factors(decomposed_df, metadata, factors)
 ```
 
 where **decomposed_df** is the result of the `decompose_pathways` function.
+
+### Helper functions
+
+```python
+parse_gmt(gmt_path, gene_id_dict_path = None)
+```
+
+* **gmt_path**: the path to the `.gmt' file to be parsed.
+* **gene_id_dict_path**: the path to a tab separated file. If not **None** this file will be used to convert gene IDs. It contains two columns, the fist is a list of gene IDs in the original format, and the second the corresponding gene IDs in the desired format.
+
+
+```python
+get_reactome(organism = 'HSA', gene_anot = 'Ensembl')
+```
+
+* **organism**: a string describing which organism to download the pathways for. Default is **HSA** for *Homo Sapiens*
+* **gene_annot**: a string describing which gene annotation scheme to use. Accepts all Reactome schemes and defaults to **Ensembl**.
