@@ -1,0 +1,9 @@
+numpy
+scipy
+pandas
+scikit-learn
+igraph
+leidenalg
+joblib
+requests
+pynndescent
