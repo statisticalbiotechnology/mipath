@@ -101,6 +101,8 @@ def score_one_factor_conditional_parallel(decomposed_df, factor, conditional):
 
 def score_factors(decomposed_df, metadata, factors):
     # factors is a sting list containing the column headers
+    if not isinstance(factors, list):
+        factors = [factors]
     result = pd.DataFrame(index = decomposed_df.columns, columns = factors)
     for label in factors:
         print("Scoring", label)
@@ -115,6 +117,8 @@ def score_factors(decomposed_df, metadata, factors):
 def score_factors_conditional(decomposed_df, metadata, factors, conditional):
     # factors is a sting list containing the column headers
     # conditional is pd.Series
+    if not isinstance(factors, list):
+        factors = [factors]
     result = pd.DataFrame(index = decomposed_df.columns, columns = factors)
     for label in factors:
         print("Scoring", label)
