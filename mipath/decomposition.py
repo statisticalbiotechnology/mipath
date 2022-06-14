@@ -30,7 +30,7 @@ def compute_snn(knn_graph, cutoff=1/15):
     print('SNN graph in',  np.round(time.time()-tic,1), 's')
     return snn
 
-def snn_score(knn_graph, cutoff = 1/15):
+def snn_score(knn_graph, cutoff = 0):
     # Default parameters follow Seurat
     tic = time.time()
     n_neighbors = len(knn_graph[0].nonzero()[1])
@@ -41,7 +41,7 @@ def snn_score(knn_graph, cutoff = 1/15):
     knn_scored = knn_scored.tocsr()
     knn_scored.data[knn_scored.data < cutoff] = 0
     knn_scored.eliminate_zeros()
-    # print('SNN scores in',  np.round(time.time()-tic,1), 's')
+    print('SNN scores in',  np.round(time.time()-tic,1), 's')
     return knn_scored
 
 def build_graph(matrix, directed=True):
