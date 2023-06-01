@@ -75,7 +75,7 @@ def score_proc(pathway_series, factor_series):
 def score_one_factor_parallel(decomposed_df, factor):
     #factor is a Series
     ncores = cpu_count() - 1
-    scores = Parallel(n_jobs=ncores)(delayed(score_proc)(pathway_series, factor) for pathway_id, pathway_series in decomposed_df.iteritems())
+    scores = Parallel(n_jobs=ncores)(delayed(score_proc)(pathway_series, factor) for pathway_id, pathway_series in decomposed_df.items())
     scores_df = pd.DataFrame(data = scores, columns=['pathway_id', factor.name]).set_index('pathway_id')[factor.name]
     return scores_df
 
@@ -94,7 +94,7 @@ def score_cond_proc(pathway_series, factor_series, conditional_series):
 def score_one_factor_conditional_parallel(decomposed_df, factor, conditional):
     #factor, conditional are pd.Series
     ncores = cpu_count() - 1
-    scores = Parallel(n_jobs=ncores)(delayed(score_cond_proc)(pathway_series, factor, conditional) for pathway_id, pathway_series in decomposed_df.iteritems())
+    scores = Parallel(n_jobs=ncores)(delayed(score_cond_proc)(pathway_series, factor, conditional) for pathway_id, pathway_series in decomposed_df.items())
     scores_df = pd.DataFrame(data = scores, columns=['pathway_id', factor.name]).set_index('pathway_id')[factor.name]
     return scores_df
 
