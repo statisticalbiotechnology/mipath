@@ -1,6 +1,15 @@
 # Mipath documentation
 
+## Installation
+
+```
+pip install mypathway
+```
+
 ## Package usage
+
+You can find an example of a simple analysis in the [vignette](MIPath_vignette.ipynb).
+
 ### Main functions
 
 The main function of this package is:
