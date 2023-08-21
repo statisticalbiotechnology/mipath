@@ -3,7 +3,7 @@
 ## Installation
 
 ```
-pip install mypathway
+pip install mipathway
 ```
 
 ## Package usage
