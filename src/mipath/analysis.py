@@ -63,7 +63,7 @@ def score_one_factor_conditional(decomposed_df, factor, conditional):
 
 
 def score_proc(pathway_series, factor_series):
-    if pathway_series.isnull()[0] == True:
+    if pathway_series.isnull().iloc[0] == True:
         return (pathway_series.name, np.nan)
     temp_df = pd.DataFrame(columns=['pathway','factor'], index=pathway_series.index)
     temp_df['pathway'] = pathway_series
