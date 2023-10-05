@@ -8,7 +8,7 @@ pip install mipathway
 
 ## Package usage
 
-You can find an example of a simple analysis in the [vignette](MIPath_vignette.ipynb).
+You can find an example of a simple analysis in the [vignette](https://github.com/statisticalbiotechnology/mipath/blob/main/MIPath_vignette.ipynb).
 
 ### Main functions
 
