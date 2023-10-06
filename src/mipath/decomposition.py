@@ -52,10 +52,10 @@ def build_graph(matrix, directed=True):
     # print('iGraph in',  np.round(time.time()-tic,1), 's')
     return g
 
-def knn_fast(X, n_neighbors=20, metric='euclidean'):
+def knn_fast(X, n_neighbors=20, metric='euclidean', n_jobs=-1):
     # Default parameters follow Seurat
     tic = time.time()
-    knn_search_index = pynndescent.NNDescent(X, n_neighbors=n_neighbors+1, metric=metric, n_jobs=-1)
+    knn_search_index = pynndescent.NNDescent(X, n_neighbors=n_neighbors+1, metric=metric, n_jobs=n_jobs)
     knn_indices, knn_dists = knn_search_index.neighbor_graph
     knn_indices = knn_indices[:,1:] # Exclude self
     knn_graph = adjacency_matrix_representation(knn_indices, np.ones(knn_indices.shape)) 
@@ -106,10 +106,11 @@ def method_standard_decomposition(in_df,
         snn_cutoff = 0,
         leiden_iterations = -1,
         max_comm_size = 0,
-        knn_method = 'fast'):
+        knn_method = 'fast',
+        n_jobs=-1):
     # Follows default parameters of Seurat
     if knn_method == 'fast':
-        NN = knn_fast(in_df.values, n_neighbors=n_neighbors, metric=metric)
+        NN = knn_fast(in_df.values, n_neighbors=n_neighbors, metric=metric, n_jobs=n_jobs)
     elif knn_method == 'exact':
         NN = knn_exact(in_df.values, n_neighbors=n_neighbors, metric=metric)
     else:

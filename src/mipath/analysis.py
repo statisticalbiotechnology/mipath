@@ -9,7 +9,7 @@ from joblib import Parallel, delayed, cpu_count
 
 from sklearn.utils.multiclass import type_of_target
 
-def decompose_pathways(data, gene_sets_df, n_neighbors=25, min_genes=3, snn=True, snn_cutoff=0, knn_method = 'fast'):
+def decompose_pathways(data, gene_sets_df, n_neighbors=25, min_genes=3, snn=True, snn_cutoff=0, knn_method = 'fast', n_jobs=-1):
     print('Performing pathway decomposition')
     decomposed_df = pd.DataFrame(index = data.index, columns = gene_sets_df.index)
     i = 1
@@ -29,7 +29,8 @@ def decompose_pathways(data, gene_sets_df, n_neighbors=25, min_genes=3, snn=True
                 knn_method=knn_method,
                 metric = 'euclidean',
                 leiden_iterations = -1,
-                max_comm_size = 0)
+                max_comm_size = 0,
+                n_jobs=n_jobs)
         decomposed_df[pathway] = partition
         print('')
     return decomposed_df
