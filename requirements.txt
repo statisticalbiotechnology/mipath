@@ -6,4 +6,4 @@ igraph
 leidenalg
 joblib
 requests
-pynndescent
+pynndescent <= 0.5.8
