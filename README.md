@@ -12,7 +12,7 @@ You can find an example of a simple analysis in the [vignette](https://github.co
 
 ## MIPath functions
 
-[Here](doc/functions.md) you can find a complete overview of the main functions in the package.
+[Here](https://github.com/statisticalbiotechnology/mipath/blob/main/doc/functions.md) you can find a complete overview of the main functions in the package.
 
 ## Help and support
 
