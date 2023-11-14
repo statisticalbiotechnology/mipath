@@ -9,7 +9,7 @@ cache_path = "data/reactome"
 def get_cache_path():
     """ Return a path suitable to store cached files """
     try:
-        os.mkdir(cache_path)
+        os.makedirs(cache_path)
     except FileExistsError:
         pass
     return cache_path
